@@ -2,7 +2,7 @@
 ![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
 ![Make](https://img.shields.io/badge/Makefile-E8E8E8.svg?style=for-the-badge&logo=GNU&logoColor=black)
 
->xpr.c is a command line application that uses a "Read-Eval-Print-Loop" interface to evaluate mathematical expressions provided by a user.  
+>xpr.c is a mathematical expression evaluator written in pure c.  
 
 <p align="center">
   <img src="https://github.com/Refaat0/xpr.c/blob/master/assets/ss.PNG" />
