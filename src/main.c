@@ -23,7 +23,7 @@ void print_help_message();
 int main(void) {
     system("cls");
     printf("%s %s\n", PROGRAM_NAME, PROGRAM_VERS);
-    printf("Type 'help' for more information. Type 'quit' to exit the program. Type 'c;s' to c;ear the screen\n");
+    printf("Type 'help' for more information. Type 'quit' to exit the program. Type 'cls' to clear the screen\n");
 
     while (1) {
         printf(">> ");
