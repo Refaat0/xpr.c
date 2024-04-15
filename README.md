@@ -5,7 +5,7 @@
 >xpr.c is a command line application that uses a "Read-Eval-Print-Loop" interface to evaluate mathematical expressions provided by a user.  
 
 <p align="center">
-  <img src="./assets/ss.png" />
+  <img src="https://github.com/Refaat0/xpr.c/blob/master/assets/ss.PNG" />
 </p>
 
 ## About The Project
