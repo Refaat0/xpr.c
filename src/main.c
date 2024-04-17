@@ -22,31 +22,38 @@ void print_help_message();
 
 int main(void) {
     system("cls");
-    printf("%s %s\n", PROGRAM_NAME, PROGRAM_VERS);
-    printf("Type 'help' for more information. Type 'quit' to exit the program. Type 'cls' to clear the screen\n");
+    char *string = "22+2";
+    ArrayList *tokens = lex(string);
 
-    while (1) {
-        printf(">> ");
-        fgets(input, INPUT_LENGTH, stdin);
-        input[strcspn(input, "\n")] = '\0';
+    printf("%f\n", _string_to_float("12.75"));
 
-        // commands
-        if (strcmp(input, "quit") == 0) {
-            printf("Exiting %s...\n", PROGRAM_NAME);
-            return 0;
-        } else if (strcmp(input, "help") == 0) {
-            print_help_message();
-        } else if (strcmp(input, "cls") == 0) {
-            system("cls");
-        } else {
-            if (is_valid_infix_expression(input, error_message, sizeof(error_message))) {
-                int evaluation = evaluate_infix_expression(input);
-                printf("%d\n", evaluation);
-            } else {
-                error_print(error_message, 0);
-            }
-        }
-    }
+
+    // system("cls");
+    // printf("%s %s\n", PROGRAM_NAME, PROGRAM_VERS);
+    // printf("Type 'help' for more information. Type 'quit' to exit the program. Type 'cls' to clear the screen\n");
+
+    // while (1) {
+    //     printf(">> ");
+    //     fgets(input, INPUT_LENGTH, stdin);
+    //     input[strcspn(input, "\n")] = '\0';
+
+    //     // commands
+    //     if (strcmp(input, "quit") == 0) {
+    //         printf("Exiting %s...\n", PROGRAM_NAME);
+    //         return 0;
+    //     } else if (strcmp(input, "help") == 0) {
+    //         print_help_message();
+    //     } else if (strcmp(input, "cls") == 0) {
+    //         system("cls");
+    //     } else {
+    //         if (is_valid_infix_expression(input, error_message, sizeof(error_message))) {
+    //             int evaluation = evaluate_infix_expression(input);
+    //             printf("%d\n", evaluation);
+    //         } else {
+    //             error_print(error_message, 0);
+    //         }
+    //     }
+    // }
 
     return 0;
 }

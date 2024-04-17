@@ -33,5 +33,10 @@ bool _is_operator(char c);
 */
 bool _is_operand(char c);
 
+/**
+ * 
+*/
+float _string_to_float(char *string);
+
 
 #endif

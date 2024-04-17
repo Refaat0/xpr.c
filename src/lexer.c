@@ -1,9 +1,11 @@
-#include "../include/lexer.h"
-#include <stdio.h>
 #include "../include/array_list.h"
 #include "../include/stack.h"
 #include "../include/token.h"
+#include "../include/lexer.h"
 #include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
 
 ArrayList *lex(char *source) {
     ArrayList *tokens = list_create();
@@ -24,6 +26,7 @@ ArrayList *lex(char *source) {
                 list_append(tokens, token_create(Operator, *source, 0));
                 break;
             default:
+
                 // todo: account for multi-digit operands, decimals, and signed operands
                 if (_is_operand(*source)) {
                     list_append(tokens, token_create(Operand, '\0', *source - '0'));
@@ -126,3 +129,8 @@ bool _is_operand(char c) {
 
     return false;
 }
+
+float _string_to_float(char *string) {
+    return strtof(string, NULL);
+}
+
