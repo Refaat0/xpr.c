@@ -26,10 +26,25 @@ ArrayList *lex(char *source) {
                 list_append(tokens, token_create(Operator, *source, 0));
                 break;
             default:
-
-                // todo: account for multi-digit operands, decimals, and signed operands
+                // todo: account for, floating point operands, and signed operands
                 if (_is_operand(*source)) {
-                    list_append(tokens, token_create(Operand, '\0', *source - '0'));
+                    // using an arraylist ...
+                    ArrayList *substring = list_create();
+
+                    while (_is_operand(*source)) {
+                        list_append(substring, &*source);
+                        *source++;
+                    }
+                    *source--;
+
+                    int r = 0;
+                    for (int i = 1; i <= substring->size; i++) {
+                        char c = *(char*)list_get(substring, i-1);
+                        r += (c - '0') * pow(10, substring->size - i);        
+                    }
+
+                    list_append(tokens, token_create(Operand, '\0', r));
+                    list_clear(substring);
                 }
                 break;
         }
@@ -131,6 +146,6 @@ bool _is_operand(char c) {
 }
 
 float _string_to_float(char *string) {
-    return strtof(string, NULL);
+    float f = 0;
+    return f;
 }
-
