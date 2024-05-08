@@ -87,8 +87,6 @@ bool _has_left_associativity(char symbol) {
         case '*':
         case '/':
             return true;
-        default:
-            printf("associativity er\nr");
     }
     return false;
 }
