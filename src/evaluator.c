@@ -41,9 +41,11 @@ int evaluate_postfix_expression(ArrayList *tokens) {
 
                 stack_push(operands, token_create(Operand, '\0', result));
                 
-                break;}
+                break;
+            }
         }
     }
+
 
     // todo: return token & destroy operands stack (mem leak)
     return ((Token*)stack_peek(operands))->number;

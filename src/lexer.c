@@ -28,23 +28,14 @@ ArrayList *lex(char *source) {
             default:
                 // todo: account for, floating point operands, and signed operands
                 if (_is_operand(*source)) {
-                    // using an arraylist ...
-                    ArrayList *substring = list_create();
-
+                    int r = 0;
                     while (_is_operand(*source)) {
-                        list_append(substring, &*source);
-                        *source++;
+                        r = r * 10 + (*source - '0');
+                       *source++;
                     }
                     *source--;
 
-                    int r = 0;
-                    for (int i = 1; i <= substring->size; i++) {
-                        char c = *(char*)list_get(substring, i-1);
-                        r += (c - '0') * pow(10, substring->size - i);        
-                    }
-
                     list_append(tokens, token_create(Operand, '\0', r));
-                    list_clear(substring);
                 }
                 break;
         }
@@ -59,45 +50,32 @@ ArrayList *lex(char *source) {
 bool is_valid_infix_expression(char *source, char *error_message, unsigned int error_message_size) {
     unsigned int count_right_parenthesis = 0, count_left_parenthesis = 0, count_operators = 0, count_operands = 0;
 
-    if (strlen(source) <= 0) {
-        snprintf(error_message, error_message_size, "Error: Expressions should be at least one characters long");
-        return false;
-    }
+    //
+    ArrayList *tokens = lex(source);
 
-    char source_start = *source;
-    char source_end   = source[strlen(source) - 1];
+    //
+    for (int i = 0; i < tokens->size; i++) {
+        Token *current_token = list_get(tokens, i);
 
-    if (_is_operator(source_start) || _is_operator(source_end)) {
-        snprintf(error_message, error_message_size, "Error: Operators can not be at the start or end of an expression");
-        return false;
-    }
-
-    while (*source) {
-        switch (*source) {
-            case '(':
-                count_left_parenthesis++;
-                break;
-            case ')':
-                count_right_parenthesis++;
-                break;
-            case '^':
-            case '*':
-            case '/':
-            case '+':
-            case '-':
+        switch (current_token->token_type) {
+            case Operator:
                 count_operators++;
                 break;
-            default:
-                if (_is_operand(*source)) {
-                    count_operands++;
-                } else if (*source != ' ') {
-                    snprintf(error_message, error_message_size, "Error: Unknown Token: '%c'", *source);
-                    return false;
-                }
+            case Operand:
+                count_operands++;
+                break;
+            case RightParenthesis:
+                count_right_parenthesis++;
+                break;
+            case LeftParenthesis:
+                count_left_parenthesis++;
                 break;
         }
+    }
 
-        *source++;
+    if (list_is_empty(tokens)) {
+        snprintf(error_message, error_message_size, "Error: Expressions should be at least one characters long");
+        return false;
     }
 
     if (count_operands <= 1) {
