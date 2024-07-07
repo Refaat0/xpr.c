@@ -18,7 +18,7 @@ xpr.c is a command line application that uses a "Read-Eval-Print-Loop" interface
 infix expression, tokenize the string into a sequence of tokens, reoder the tokens into postfix notation using The Shunting Yard algorithm, then  evaluate the postfix expression using a stack based algorithm.
 
 ### Limitations
-xpr.c only supports the following  mathematical operators: `^ * / + -`. It also **does not support** multi-digit operands, floating point operands, or signed operands (coming soon!)
+xpr.c only supports the following  mathematical operators: `^ * / + -`. It also **does not support** signed operands (coming soon!)
 
 ## Getting Started
 These instructions will help you get a copy of this project up & running on your machine.
