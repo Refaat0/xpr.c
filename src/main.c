@@ -21,8 +21,6 @@ char input[INPUT_LENGTH];
 void print_help_message();
 
 int main(void) {
-
-    
     system("clear");
     printf("%s %s\n", PROGRAM_NAME, PROGRAM_VERS);
     printf("Type 'help' for more information. Type 'quit' to exit the program. Type 'cls' to clear the screen\n");
@@ -42,8 +40,8 @@ int main(void) {
             system("cls");
         } else {
             if (is_valid_infix_expression(input, error_message, sizeof(error_message))) {
-                int evaluation = evaluate_infix_expression(input);
-                printf("%d\n", evaluation);
+                float evaluation = evaluate_infix_expression(input);
+                printf("%f\n", evaluation);
             } else {
                 error_print(error_message, 0);
             }

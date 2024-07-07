@@ -12,8 +12,8 @@ typedef enum {
 
 typedef struct Token {
     TokenType token_type;
-    char symbol;
-    int  number;
+    float number;
+    char  symbol;
 } Token;
 
 /**
@@ -25,7 +25,7 @@ typedef struct Token {
  * @param   number     An integer  representing an operand
  * @return  
 */
-Token *token_create(TokenType token_type, char symbol, int number);
+Token *token_create(TokenType token_type, char symbol, float number);
 
 /**
  * @brief   This function frees memory allocated to a Token structure

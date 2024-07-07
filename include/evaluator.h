@@ -10,7 +10,7 @@
  * @param   tokens An ArrayList containing a sequence of tokens in postfix notation
  * @return  The result of the expression evaluation.
 */
-int evaluate_postfix_expression(ArrayList *tokens);
+float evaluate_postfix_expression(ArrayList *tokens);
 
 /**
  * @brief   this function...
@@ -19,6 +19,6 @@ int evaluate_postfix_expression(ArrayList *tokens);
  * @param   infix_expression ...
  * @return  ...
 */
-int evaluate_infix_expression(char *infix_expression);
+float evaluate_infix_expression(char *infix_expression);
 
 #endif

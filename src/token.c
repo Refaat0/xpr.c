@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-Token *token_create(TokenType token_type, char symbol, int number) {
+Token *token_create(TokenType token_type, char symbol, float number) {
     Token *token = malloc(sizeof(Token));
     if (token == NULL) {
         fprintf(stderr, "Faile to allocate memory for a Token structure\n");

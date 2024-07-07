@@ -5,9 +5,9 @@
 #include "../include/parser.h"
 #include <math.h>
 
-int evaluate_postfix_expression(ArrayList *tokens) {
+float evaluate_postfix_expression(ArrayList *tokens) {
     Stack *operands = stack_create();
-    int result = 0;
+    float result = 0;
 
     for (int i = 0; i < tokens->size; i++) {
         Token *current_token = (Token*) list_get(tokens, i);
@@ -18,8 +18,8 @@ int evaluate_postfix_expression(ArrayList *tokens) {
                 break;
 
             case Operator:{
-                int value_a = ((Token*)stack_pop(operands))->number;
-                int value_b = ((Token*)stack_pop(operands))->number;
+                float value_a = ((Token*)stack_pop(operands))->number;
+                float value_b = ((Token*)stack_pop(operands))->number;
 
                 switch (current_token->symbol) {
                     case '^':
@@ -51,7 +51,7 @@ int evaluate_postfix_expression(ArrayList *tokens) {
     return ((Token*)stack_peek(operands))->number;
 }
 
-int evaluate_infix_expression(char *infix_expression) {
+float evaluate_infix_expression(char *infix_expression) {
     // declare & initialize an ArrayList of tokens ordered in infix notation
     ArrayList *tokens_infix_notation = lex(infix_expression);
 
@@ -59,7 +59,7 @@ int evaluate_infix_expression(char *infix_expression) {
     ArrayList *tokens_postfix_notation = infix_to_postfix(tokens_infix_notation);
 
     // declare & initialize an Integer of which its value is the evaluated postfix expression
-    int e = evaluate_postfix_expression(tokens_postfix_notation);
+    float e = evaluate_postfix_expression(tokens_postfix_notation);
 
     // destroy all tokens in the tokens ArrayList
     for (int i = 0; i  < tokens_infix_notation->size; i++) {
