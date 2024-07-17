@@ -37,11 +37,11 @@ int main(void) {
         } else if (strcmp(input, "help") == 0) {
             print_help_message();
         } else if (strcmp(input, "cls") == 0) {
-            system("cls");
+            printf("\e[1;1H\e[2J");
         } else {
             if (is_valid_infix_expression(input, error_message, sizeof(error_message))) {
                 float evaluation = evaluate_infix_expression(input);
-                printf("%f\n", evaluation);
+                printf("%2.2f\n", evaluation);
             } else {
                 error_print(error_message, 0);
             }
